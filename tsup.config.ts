@@ -30,14 +30,17 @@ export default defineConfig({
 		"i18next",
 		"react-i18next",
 		"next-themes",
+		"next-client-cookies",
 		"lucide-react",
+		"lucide-react/dynamicIconImports",
 		"@tabler/icons-react",
 		"tailwindcss",
 		"zod",
 		"react-hook-form",
 		"sonner",
 		"react-spinners",
-		"next-client-cookies",
+		"pino",
+		"pino-pretty"
 	],
 	// Bundle everything except externals
 	bundle: true,
