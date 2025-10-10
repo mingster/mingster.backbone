@@ -5,8 +5,8 @@
  * Supports both client-side and server-side usage.
  */
 
-import { getClientIPAddress } from "./server-utils"
 import logger from "../lib/logger"
+import { getClientIPAddress } from "./server-utils"
 
 export interface GeoLocation {
     ip: string

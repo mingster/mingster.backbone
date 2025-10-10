@@ -10,8 +10,6 @@ import {
     useReactTable
 } from "@tanstack/react-table"
 import { useEffect, useState } from "react"
-
-import { useTranslation } from "../i18n/client"
 import { Button } from "../components/ui/button"
 import { Input } from "../components/ui/input"
 import {
@@ -22,6 +20,7 @@ import {
     TableHeader,
     TableRow
 } from "../components/ui/table"
+import { useTranslation } from "../i18n/client"
 import { useI18n } from "../providers/i18n-provider"
 
 interface props<TData, TValue> {
@@ -197,7 +196,7 @@ export function DataTableCheckbox<TData, TValue>({
             </div>
 
             <div className="flex items-center justify-end space-x-2 py-4">
-                <div className="flex-1 text-sm text-muted-foreground">
+                <div className="flex-1 text-muted-foreground text-sm">
                     {`${table.getFilteredSelectedRowModel().rows.length} of ${table.getFilteredRowModel().rows.length} ${t("item")}${t("selected")}`}
                 </div>
 

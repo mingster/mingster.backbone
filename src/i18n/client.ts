@@ -9,9 +9,9 @@ import { useEffect, useState } from "react"
 
 import {
     type FallbackNs,
+    initReactI18next,
     type UseTranslationOptions,
     type UseTranslationResponse,
-    initReactI18next,
     useTranslation as useTranslationOrg
 } from "react-i18next"
 import { cookieName, getOptions, languages } from "./settings"

@@ -21,7 +21,7 @@ const Scheduled = ({ timestamp, children }: ScheduledProps) => {
         }
     }, [timestamp])
 
-    return isEnabled ? <>{children}</> : null
+    return isEnabled ? children : null
 }
 
 export default Scheduled

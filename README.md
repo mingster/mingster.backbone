@@ -1,8 +1,19 @@
 # mingster.backbone
 
-**Plug & play components for React web apps.**
+**Plug & play components for Next.js/React web apps.**
 
-A comprehensive library of reusable React components, utilities, hooks, and providers built for [mingster.com](https://mingster.com) and [riben.life](https://riben.life) projects. Based on Next.js 15, React 19, shadcn/ui, and Tailwind CSS.
+A comprehensive library of reusable React components, utilities, hooks, and providers built for Next.js 15, React 19, shadcn/ui, and Tailwind CSS v4 projects.
+
+## 📊 What's Inside
+
+- **100+ UI Components** - Complete shadcn/ui component library
+- **DataTable Suite** - Advanced tables with sorting, filtering, pagination, drag-and-drop
+- **11 Custom Hooks** - Theme, mobile detection, geo-IP, cart, and more
+- **Utility Components** - Loader, toast notifications, theme toggler, Taiwan bank selector
+- **10+ Utility Modules** - DateTime, image processing, GUID generation, encryption
+- **Libraries** - Analytics, logging (Pino), business hours, reCAPTCHA
+- **TypeScript** - Fully typed with comprehensive type definitions
+- **1400+ Taiwan Bank Codes** - Complete bank data with types
 
 ---
 
@@ -20,11 +31,81 @@ This package is designed to be used in a monorepo structure. Add it to your proj
 
 ### Required Dependencies
 
-Ensure these peer dependencies are installed in your project:
+This package has peer dependencies that must be installed in your consuming project.
+
+#### Core Dependencies
 
 ```bash
-bun add react-spinners sonner react-hook-form @tanstack/react-table
+bun add react@^19.2.0 react-dom@^19.2.0 next@^15.5.4
 ```
+
+#### UI & Styling
+
+```bash
+bun add tailwindcss@^4.1.14 lucide-react@^0.544.0 @tabler/icons-react@^3.35.0
+bun add next-themes@^0.4.6 cmdk@1.1.1 sonner@^2.0.7 vaul@^1.1.2
+```
+
+#### Radix UI Components
+
+```bash
+bun add @radix-ui/react-accordion@^1.2.12 @radix-ui/react-alert-dialog@^1.1.15
+bun add @radix-ui/react-aspect-ratio@^1.1.7 @radix-ui/react-avatar@^1.1.10
+bun add @radix-ui/react-checkbox@^1.3.3 @radix-ui/react-collapsible@^1.1.12
+bun add @radix-ui/react-dialog@^1.1.15 @radix-ui/react-dropdown-menu@^2.1.16
+bun add @radix-ui/react-hover-card@^1.1.15 @radix-ui/react-label@^2.1.7
+bun add @radix-ui/react-navigation-menu@^1.2.14 @radix-ui/react-popover@^1.1.15
+bun add @radix-ui/react-progress@^1.1.7 @radix-ui/react-radio-group@^1.3.8
+bun add @radix-ui/react-scroll-area@^1.2.10 @radix-ui/react-select@^2.2.6
+bun add @radix-ui/react-separator@^1.1.7 @radix-ui/react-slider@^1.3.6
+bun add @radix-ui/react-slot@^1.2.3 @radix-ui/react-switch@^1.2.6
+bun add @radix-ui/react-tabs@^1.1.13 @radix-ui/react-toggle@^1.1.10
+bun add @radix-ui/react-toggle-group@^1.1.11 @radix-ui/react-tooltip@^1.2.8
+```
+
+#### Forms & Data Tables
+
+```bash
+bun add react-hook-form@^7.64.0 @hookform/resolvers@^5.2.2
+bun add @tanstack/react-table@^8.21.3 input-otp@^1.4.2
+bun add react-day-picker@8.10.1 date-fns@^4.1.0
+```
+
+#### Drag & Drop
+
+```bash
+bun add @dnd-kit/core@^6.3.1 @dnd-kit/sortable@^10.0.0
+bun add @dnd-kit/modifiers@^9.0.0 @dnd-kit/utilities@^3.2.2
+```
+
+#### Internationalization
+
+```bash
+bun add i18next@^25.5.3 react-i18next@^15.7.4
+bun add i18next-browser-languagedetector@^8.2.0
+bun add i18next-resources-to-backend@^1.2.1
+```
+
+#### Utilities & Misc
+
+```bash
+bun add axios@^1.12.2 decimal.js@^10.6.0 crypto-js@^4.2.0
+bun add react-spinners@^0.17.0 react-resizable-panels@^3.0.6
+bun add react-image-file-resizer@^0.4.8 embla-carousel-react@^8.6.0
+bun add recharts@^2.15.4 pino@^9.13.1 pino-pretty@^13.1.1
+```
+
+#### Optional (Auth & Analytics)
+
+```bash
+bun add @daveyplate/better-auth-ui@^3.2.5 @next/third-parties@^15.5.4
+bun add @google-cloud/recaptcha-enterprise@^6.3.0
+bun add @wojtekmaj/react-recaptcha-v3@^0.1.4 react-google-recaptcha@^3.1.0
+```
+
+> **Note**: You may not need all dependencies. Install only what your application uses. The package will warn about missing peer dependencies when needed.
+
+#### TypeScript Configuration
 
 Configure TypeScript path mapping in your `tsconfig.json`:
 
@@ -326,27 +407,22 @@ const isValid = await verifyRecaptcha(token);
 
 ### 6. Internationalization (i18n)
 
-Complete i18n setup with `i18next` and `react-i18next`.
+> **⚠️ Note**: i18n infrastructure is **NOT exported** in the built package due to project-specific locale file dependencies. The `src/i18n/` folder is included for reference, but you'll need to copy and configure it manually in your project with your own locale JSON files.
 
-#### Exports
+#### What's Included (For Reference Only)
 
-- **`useTranslation`** - Translation hook
-- **`useTranslationWithFallback`** - Translation with fallback
-- **`i18nConfig`** - i18n configuration object
-- **`i18n`** - i18next instance
-- **`fallbackLng`, `languages`, `defaultNS`** - Settings
+- `useTranslation` - Translation hook (not exported)
+- `i18nConfig` - i18n configuration (not exported)
+- `i18n` - i18next instance (not exported)
+- `fallbackLng`, `languages`, `defaultNS` - Settings (not exported)
 
-#### Example: Using i18n
+#### Setup in Your Project
 
-```tsx
-import { useTranslation } from "mingster.backbone";
+1. Copy `src/i18n/` to your project
+2. Create your locale files in `src/i18n/locales/{lang}/{namespace}.json`
+3. Configure in your app layout
 
-function MyComponent() {
-  const { t } = useTranslation("common");
-  
-  return <h1>{t("welcome")}</h1>;
-}
-```
+See [`src/i18n/locales/README.md`](./src/i18n/locales/README.md) for detailed setup instructions.
 
 ---
 
@@ -354,30 +430,55 @@ function MyComponent() {
 
 React context providers for global state.
 
-#### I18n Provider
-
-- **`I18nProvider`** - Wraps app with i18n context
-- **`useI18n`** - Hook to access i18n context
-
 #### Theme Provider
 
 - **`ThemeProvider`** - Next.js theme provider (next-themes)
-- Automatic dark/light mode
+- Automatic dark/light mode switching
+- System theme detection
 
 #### Example: Using Providers
 
 ```tsx
-import { ThemeProvider, I18nProvider } from "mingster.backbone";
+import { ThemeProvider } from "mingster.backbone";
 
 function App({ children }) {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <I18nProvider>
-        {children}
-      </I18nProvider>
+      {children}
     </ThemeProvider>
   );
 }
+```
+
+> **Note**: `I18nProvider` is not exported. Set up i18n manually in your project following the instructions above.
+
+---
+
+### 8. Types
+
+TypeScript type definitions and data.
+
+#### Taiwan Bank Codes
+
+- **`TwBankCode`** - Type definition for Taiwan bank codes
+- **`TwBankCodes`** - Complete array of Taiwan bank data (1400+ entries)
+
+#### Example: Using Types
+
+```tsx
+import { type TwBankCode, TwBankCodes } from "mingster.backbone";
+
+// Filter banks
+const commercialBanks = TwBankCodes.filter(bank => 
+  bank.Short.includes("銀行")
+);
+
+// Type-safe bank data
+const bank: TwBankCode = {
+  Key: "台灣銀行",
+  Short: "台銀", 
+  Value: "004"
+};
 ```
 
 ---
@@ -386,19 +487,50 @@ function App({ children }) {
 
 ```text
 mingster.backbone/
-├── package.json
-├── tsconfig.json
-├── README.md
+├── package.json              # Package configuration & peer dependencies
+├── tsconfig.json             # TypeScript configuration
+├── tsup.config.ts            # Build configuration
+├── README.md                 # This file
+├── BUILD.md                  # Build system documentation
+├── doc/
+│   ├── CHANGELOG.md          # Version history & features
+│   ├── COMPONENT_MIGRATION.md # Migration guide for new components
+│   ├── EXPORT_SUMMARY.md     # Complete export reference
+│   └── PUBLISHING_CHECKLIST.md # Publishing workflow
+├── dist/                     # Built output (generated)
+│   ├── index.js              # ESM bundle
+│   ├── index.cjs             # CommonJS bundle
+│   └── index.d.ts            # Type definitions
 └── src/
     ├── index.ts              # Main entry point with all exports
-    ├── components/           # DataTable and UI components
-    │   ├── dataTable*.tsx
-    │   └── ui/              # shadcn/ui components
-    ├── hooks/               # Custom React hooks
-    ├── utils/               # Utility functions
-    ├── lib/                 # Additional libraries
-    ├── i18n/                # i18n configuration
-    └── providers/           # React context providers
+    ├── components/           # React components
+    │   ├── cliploader.tsx        # Loader component
+    │   ├── dataTable*.tsx        # DataTable components
+    │   ├── not-mount-skeleton.tsx
+    │   ├── scheduled.tsx
+    │   ├── sidebar-toggle.tsx
+    │   ├── theme-toggler.tsx
+    │   ├── toaster.tsx
+    │   ├── tw-bankcode-combobox.tsx
+    │   └── ui/                   # shadcn/ui components (100+ files)
+    ├── hooks/                # Custom React hooks (11 hooks)
+    ├── utils/                # Utility functions (10 modules)
+    ├── lib/                  # Additional libraries
+    │   ├── analytics.ts          # Google Analytics
+    │   ├── businessHours/        # Business hours logic
+    │   ├── client-logger.ts      # Client logging
+    │   ├── logger.ts             # Server logging (Pino)
+    │   ├── useTwZipCode2/        # Taiwan zip code data
+    │   └── ...
+    ├── i18n/                 # i18n config (not exported, for reference)
+    │   ├── client.ts
+    │   ├── config.ts
+    │   ├── settings.ts
+    │   └── locales/              # Placeholder locale files
+    ├── providers/            # React context providers
+    │   └── theme-provider.tsx    # Theme provider (exported)
+    └── types/                # TypeScript types
+        └── bank3.ts              # Taiwan bank codes
 ```
 
 ---
@@ -426,18 +558,32 @@ See `package.json` for the complete list.
 
 ## 🛠️ Development
 
-This is a **source package** that gets compiled by the consuming project's build system (Next.js/TypeScript).
+This package can be used in two ways:
 
-### Scripts
+1. **As a workspace source package** - TypeScript source files are compiled by your Next.js project
+2. **As a published npm package** - Pre-built with tsup for distribution
+
+### Available Scripts
 
 ```bash
-bun run build         # Build with tsup
-bun run dev           # Watch mode with tsc
+# Code Quality
+bun run format        # Format code with Biome
+bun run lint          # Check code quality
+bun run lint:fix      # Auto-fix linting issues
+bun run typecheck     # TypeScript type checking
+
+# Building (for npm publishing)
+bun run build         # Build with tsup (ESM + CJS + types)
+bun run dev           # Watch mode for development
+bun run clean         # Clean build artifacts
+
+# Publishing (see PUBLISHING_CHECKLIST.md)
+npm publish --access public
 ```
 
 ### Build System
 
-The package uses:
+For npm publishing, the package uses:
 
 - **TypeScript** for type checking
 - **tsup** for production builds
@@ -456,22 +602,37 @@ import {
   Dialog,
   DialogTrigger,
   DialogContent,
+  DialogTitle,
+  Loader,
+  toastSuccess,
+  toastError,
   useTheme,
   useMobile,
-  useTranslation,
   formatDateTime,
   cn,
-  logger,
 } from "mingster.backbone";
 
-function AdminDashboard({ data }) {
-  const { t } = useTranslation("admin");
+function AdminDashboard({ data, isLoading }) {
   const { theme } = useTheme();
   const isMobile = useMobile();
 
+  const handleAddItem = async (item) => {
+    try {
+      await saveItem(item);
+      toastSuccess({ description: "Item added successfully!" });
+    } catch (error) {
+      toastError({ description: "Failed to add item" });
+    }
+  };
+
+  if (isLoading) return <Loader />;
+
   return (
     <div className={cn("p-4", isMobile && "p-2")}>
-      <h1>{t("dashboard")}</h1>
+      <h1>Admin Dashboard</h1>
+      <p className="text-muted-foreground">
+        Last updated: {formatDateTime(new Date())}
+      </p>
       
       <DataTable
         columns={columns}
@@ -484,7 +645,8 @@ function AdminDashboard({ data }) {
           <Button>Add Item</Button>
         </DialogTrigger>
         <DialogContent>
-          <h2>Add New Item</h2>
+          <DialogTitle>Add New Item</DialogTitle>
+          {/* Your form here */}
         </DialogContent>
       </Dialog>
     </div>
@@ -503,8 +665,3 @@ MIT
 mingster - [https://mingster.com](https://mingster.com)
 
 ---
-
-## 🔗 Related Projects
-
-- [mingster.com](https://mingster.com) - E-commerce platform
-- [riben.life](https://riben.life) - Japanese language learning platform

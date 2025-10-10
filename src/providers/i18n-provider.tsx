@@ -1,9 +1,9 @@
 "use client"
 
-import { useTranslation } from "../i18n/client"
-import { fallbackLng } from "../i18n/settings"
 //import { useCookies } from "next-client-cookies";
 import { createContext, useContext } from "react"
+import { useTranslation } from "../i18n/client"
+import { fallbackLng } from "../i18n/settings"
 
 interface i18nContext {
     lng: string

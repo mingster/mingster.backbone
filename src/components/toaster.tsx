@@ -1,5 +1,5 @@
-import { Toaster as SonnerToaster, toast } from "sonner"
 import { IconAlertTriangle } from "@tabler/icons-react"
+import { Toaster as SonnerToaster, toast } from "sonner"
 
 export function toastSuccess(options: { title?: string; description: string }) {
     return toast.success(options.title || "Success", {

@@ -9,6 +9,7 @@
       "resolveJsonModule": true,
       "allowJs": true,
       "incremental": false,
+      "downlevelIteration": true,
       "lib": [
           "dom",
           "dom.iterable",

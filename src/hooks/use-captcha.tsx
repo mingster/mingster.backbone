@@ -2,8 +2,7 @@
 
 import { AuthUIContext } from "@daveyplate/better-auth-ui"
 import { useGoogleReCaptcha } from "@wojtekmaj/react-recaptcha-v3"
-import type ReCAPTCHA from "react-google-recaptcha"
-import { type RefObject, useContext, useRef } from "react"
+import { useContext, useRef } from "react"
 
 // Default captcha endpoints
 const DEFAULT_CAPTCHA_ENDPOINTS = [

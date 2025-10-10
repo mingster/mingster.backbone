@@ -1,7 +1,19 @@
+import crypto from "node:crypto"
 import axios from "axios"
 import Resizer from "react-image-file-resizer"
-import { generateSHA1, generateSignature } from "./utils"
 import { clientLogger } from "../lib/client-logger"
+
+// Crypto utilities for Cloudinary
+const generateSHA1 = (data: crypto.BinaryLike) => {
+    const hash = crypto.createHash("sha1")
+    hash.update(data)
+    return hash.digest("hex")
+}
+
+const generateSignature = (publicId: string, apiSecret: string) => {
+    const timestamp = Date.now()
+    return `public_id=${publicId}&timestamp=${timestamp}${apiSecret}`
+}
 
 export async function resizeAndCropImage(
     file: File,
@@ -150,7 +162,7 @@ export const uploadImage = async (
 //https://www.obytes.com/blog/cloudinary-in-nextjs
 export const deleteImage = async (publicId: string) => {
     const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME as string
-    const timestamp = new Date().getTime()
+    const timestamp = Date.now()
     const apiKey = process.env.NEXT_PUBLIC_CLOUDINARY_APIKEY as string
     const apiSecret = process.env.NEXT_PUBLIC_CLOUDINARY_APISECRET as string
     const signature = generateSHA1(generateSignature(publicId, apiSecret))

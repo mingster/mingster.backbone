@@ -46,29 +46,6 @@ class ClientLogger {
         this.version = options.version
     }
 
-    private async sendToServer(logEntry: LogEntry): Promise<void> {
-        try {
-            const response = await fetch("/api/log-write", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    logs: [logEntry]
-                })
-            })
-
-            if (!response.ok) {
-                console.error(
-                    "Failed to send log to server:",
-                    response.statusText
-                )
-            }
-        } catch (error) {
-            console.error("Failed to send log to server:", error)
-        }
-    }
-
     private async processQueue(): Promise<void> {
         if (this.isProcessing || this.queue.length === 0) {
             return

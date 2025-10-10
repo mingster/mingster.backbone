@@ -4,6 +4,7 @@ import { IconFileHorizontal } from "@tabler/icons-react"
 import type { Table } from "@tanstack/react-table"
 
 import { useTranslation } from "../i18n/client"
+import { useI18n } from "../providers/i18n-provider"
 import { Button } from "./ui/button"
 import {
     DropdownMenu,
@@ -13,7 +14,6 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger
 } from "./ui/dropdown-menu"
-import { useI18n } from "../providers/i18n-provider"
 
 interface DataTableViewOptionsProps<TData> {
     table: Table<TData>

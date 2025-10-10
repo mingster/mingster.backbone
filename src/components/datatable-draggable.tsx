@@ -75,9 +75,9 @@ export function DragHandle({ id }: { id: UniqueIdentifier }) {
             {...listeners}
             variant="ghost"
             size="icon"
-            className="text-muted-foreground size-7 hover:bg-transparent"
+            className="size-7 text-muted-foreground hover:bg-transparent"
         >
-            <IconGripVertical className="text-muted-foreground size-3" />
+            <IconGripVertical className="size-3 text-muted-foreground" />
             <span className="sr-only">Drag to reorder</span>
         </Button>
     )
@@ -143,6 +143,7 @@ export function DataTableDraggable<TData extends { id: UniqueIdentifier }>({
         pageSize: initialPageSize
     })
     const sortableId = React.useId()
+    const selectId = React.useId()
     const sensors = useSensors(
         useSensor(MouseSensor, {}),
         useSensor(TouchSensor, {}),
@@ -228,7 +229,7 @@ export function DataTableDraggable<TData extends { id: UniqueIdentifier }>({
                 </div>
             )}
 
-            <div className="overflow-hidden rounded-lg border mt-4">
+            <div className="mt-4 overflow-hidden rounded-lg border">
                 <DndContext
                     collisionDetection={closestCenter}
                     modifiers={[restrictToVerticalAxis]}
@@ -237,7 +238,7 @@ export function DataTableDraggable<TData extends { id: UniqueIdentifier }>({
                     id={sortableId}
                 >
                     <Table>
-                        <TableHeader className="bg-muted sticky top-0 z-10">
+                        <TableHeader className="sticky top-0 z-10 bg-muted">
                             {table.getHeaderGroups().map((headerGroup) => (
                                 <TableRow key={headerGroup.id}>
                                     {headerGroup.headers.map((header) => (
@@ -285,13 +286,13 @@ export function DataTableDraggable<TData extends { id: UniqueIdentifier }>({
             {/*pagination */}
             <div className="flex items-center justify-end space-x-2 py-4">
                 {rowSelectionEnabled && (
-                    <div className="text-muted-foreground hidden flex-1 text-xs lg:flex">
+                    <div className="hidden flex-1 text-muted-foreground text-xs lg:flex">
                         {table.getFilteredSelectedRowModel().rows.length} of
                         {table.getFilteredRowModel().rows.length} row(s)
                         selected.
                     </div>
                 )}
-                <div className="flex w-full items-center gap-8 lg:w-fit text-xs">
+                <div className="flex w-full items-center gap-8 text-xs lg:w-fit">
                     <div className="hidden items-center gap-2 lg:flex">
                         <Label htmlFor="rows-per-page" className="text-xs">
                             Rows per page
@@ -305,7 +306,7 @@ export function DataTableDraggable<TData extends { id: UniqueIdentifier }>({
                             <SelectTrigger
                                 size="sm"
                                 className="w-20 text-xs"
-                                id="rows-per-page"
+                                id={selectId}
                             >
                                 <SelectValue
                                     placeholder={

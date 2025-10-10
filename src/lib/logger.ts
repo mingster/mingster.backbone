@@ -1,8 +1,8 @@
+import pino from "pino"
 import {
     transformBigIntToNumbers,
     transformDecimalsToNumbers
 } from "../utils/edge-utils"
-import pino from "pino"
 
 const isProduction = process.env.NODE_ENV === "production"
 
@@ -136,7 +136,7 @@ class Logger {
             try {
                 logMessage = JSON.stringify(message)
                 logMetadata = { ...metadata, metadata: message }
-            } catch (error) {
+            } catch (_error) {
                 transformBigIntToNumbers(message)
                 transformDecimalsToNumbers(message)
                 logMessage = JSON.stringify(message)

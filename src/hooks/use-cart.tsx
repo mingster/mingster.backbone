@@ -243,10 +243,7 @@ export const CartProvider: React.FC<{
 
         const currentItem = state.items.find((i: Item) => i.id === item.id)
 
-        if (
-            !currentItem &&
-            !Object.prototype.hasOwnProperty.call(item, "price")
-        )
+        if (!currentItem && !Object.hasOwn(item, "price"))
             //if (!currentItem && !item.hasOwnProperty("price"))
             throw new Error("You must pass a `price` for new items")
 

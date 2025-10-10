@@ -2,9 +2,8 @@
 
 import { IconSortAscending } from "@tabler/icons-react"
 import type { Column } from "@tanstack/react-table"
-
-import { Button } from "./ui/button"
 import { cn } from "../lib/utils"
+import { Button } from "./ui/button"
 
 interface DataTableColumnHeaderProps<TData, TValue>
     extends React.HTMLAttributes<HTMLDivElement> {
@@ -30,7 +29,7 @@ export function DataTableColumnHeader<TData, TValue>({
                     column.toggleSorting(column.getIsSorted() === "asc")
                 }
             >
-                <div className="capitalize text-xs">{title}</div>
+                <div className="text-xs capitalize">{title}</div>
                 <IconSortAscending className="ml-1 size-4" />
             </Button>
         </div>
