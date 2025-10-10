@@ -1,7 +1,7 @@
 {
   "name": "mingster.backbone",
   "homepage": "https://mingster.com/packages/mingster.backbone",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Plug & play components for nextjs/react web apps.",
   "type": "module",
   "main": "./dist/index.cjs",
