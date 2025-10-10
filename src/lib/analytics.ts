@@ -273,7 +273,6 @@ export const analytics = {
     },
 
     // Custom event tracking
-    // biome-ignore lint/suspicious/noExplicitAny: Analytics parameters can be any JSON-serializable value
     trackCustomEvent: (eventName: string, parameters?: Record<string, any>) => {
         sendGAEventSafe({
             event: eventName,

@@ -1,15 +1,25 @@
 import { defineConfig } from "tsup";
+import { preserveDirectivesPlugin } from "esbuild-plugin-preserve-directives"
 
 export default defineConfig({
 	entry: ["src/index.ts"],
 	format: ["cjs", "esm"],
+	splitting: true,
+	cjsInterop: true,
+	skipNodeModulesBundle: true,
+	treeshake: false,
+	metafile: true,
+	esbuildPlugins: [
+		preserveDirectivesPlugin({
+			directives: ["use client", "use strict"],
+			include: /\.(js|ts|jsx|tsx)$/,
+			exclude: /node_modules/
+		})
+	],
 	dts: true,
-	splitting: false,
 	sourcemap: true,
 	clean: true,
-	treeshake: true,
 	minify: false,
-	skipNodeModulesBundle: true,
 	external: [
 		"react",
 		"react-dom",
@@ -29,15 +39,6 @@ export default defineConfig({
 		"react-spinners",
 		"next-client-cookies",
 	],
-	esbuildOptions(options) {
-		options.mainFields = ["module", "main"];
-		options.conditions = ["import", "require"];
-		// Ignore dynamic imports that can't be resolved (locale files)
-		options.logOverride = options.logOverride || {};
-		options.logOverride["dynamic-import"] = "silent";
-	},
 	// Bundle everything except externals
 	bundle: true,
-	onSuccess: 'echo "Build complete!"',
 });
-

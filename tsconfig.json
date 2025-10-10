@@ -16,9 +16,11 @@
           "esnext"
       ],
       "module": "esnext",
-      "moduleResolution": "bundler"
+      "moduleResolution": "bundler",
+      "types": ["node"]
   },
   "include": [
-      "src"
+      "src",
+      "tsup.config.ts"
   ]
 }

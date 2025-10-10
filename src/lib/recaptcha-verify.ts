@@ -60,7 +60,6 @@ export async function verifyRecaptchaV3({
 
         // Build the assessment request following Google's structure
         // Include optional context for better risk analysis
-        // biome-ignore lint/suspicious/noExplicitAny: Google reCAPTCHA event object has dynamic structure
         const event: any = {
             token: token,
             siteKey: siteKey,
