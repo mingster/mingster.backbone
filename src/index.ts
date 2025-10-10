@@ -11,8 +11,6 @@ export { PageViewTracker } from "./components/analytics/page-view-tracker"
 export { RokuAnalyticsDashboard } from "./components/analytics/roku-analytics-dashboard"
 export { TrackedButton } from "./components/analytics/tracked-button"
 export { TrackedForm } from "./components/analytics/tracked-form"
-export { Loader } from "./components/cliploader"
-
 // ============================================================================
 // Utility Components
 // ============================================================================
@@ -33,6 +31,10 @@ export { default as DisplayMarkDown } from "./components/display-mark-down"
 export { default as MarkDownEditor } from "./components/editor-component"
 export { Heading as HeadingWithBadge } from "./components/heading"
 export { IOSVersionCheck } from "./components/ios-version-check"
+// ============================================================================
+// UI Components (shadcn/ui)
+// ============================================================================
+export { Loader } from "./components/loader"
 export { AlertModal } from "./components/modals/alert-modal"
 export { ConfirmModal } from "./components/modals/confirm-modal"
 export { NotMountSkeleton } from "./components/not-mount-skeleton"
@@ -46,10 +48,6 @@ export {
     toastSuccess
 } from "./components/toaster"
 export { TwBankCodeCombobox } from "./components/tw-bankcode-combobox"
-
-// ============================================================================
-// UI Components (shadcn/ui)
-// ============================================================================
 export {
     Accordion,
     AccordionContent,
@@ -183,7 +181,6 @@ export {
     HoverCardContent,
     HoverCardTrigger
 } from "./components/ui/hover-card"
-export { default as Icon } from "./components/ui/icon"
 export { default as IconButton } from "./components/ui/icon-button"
 export { Input } from "./components/ui/input"
 export {
@@ -193,8 +190,6 @@ export {
     InputOTPSlot
 } from "./components/ui/input-otp"
 export { Label } from "./components/ui/label"
-// Loader from ui/loader conflicts with cliploader export - skipping
-// export { Loader } from "./components/ui/loader"
 export { Modal } from "./components/ui/modal"
 export {
     NavigationMenu,
@@ -340,9 +335,6 @@ export {
     transformDecimalsToNumbers
 } from "./utils/edge-utils"
 export * from "./utils/guid-utils"
-// NOTE: image-utils is CLIENT-SIDE but uses node:crypto for Cloudinary signatures (server-side only)
-// Import directly if needed: import { resizeAndCropinary, uploadToCloudinary } from "mingster.backbone/utils/image-utils"
-// export * from "./utils/image-utils"
 export * from "./utils/logger"
 
 // ============================================================================
