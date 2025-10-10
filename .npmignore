@@ -1,0 +1,40 @@
+# Source files (already compiled to dist)
+*.ts
+*.tsx
+!*.d.ts
+
+# Config files
+tsconfig.json
+tsup.config.ts
+biome.json
+
+# Development
+.turbo
+node_modules
+.DS_Store
+*.log
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+
+# Tests
+__tests__
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Documentation that's not needed in npm package
+doc/
+
+# Keep these
+!dist/**
+!README.md
+!BUILD.md
+!LICENSE
+
