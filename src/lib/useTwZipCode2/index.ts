@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react"
 import cities from "./data/cities"
 import districts from "./data/districts"

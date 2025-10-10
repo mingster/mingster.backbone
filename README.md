@@ -8,10 +8,10 @@ A comprehensive library of reusable React components, utilities, hooks, and prov
 
 - **100+ UI Components** - Complete shadcn/ui component library
 - **DataTable Suite** - Advanced tables with sorting, filtering, pagination, drag-and-drop
-- **11 Custom Hooks** - Theme, mobile detection, geo-IP, cart, and more
-- **Utility Components** - Loader, toast notifications, theme toggler, Taiwan bank selector
-- **10+ Utility Modules** - DateTime, image processing, GUID generation, encryption
-- **Libraries** - Analytics, logging (Pino), business hours, reCAPTCHA
+- **20+ Utility Components** - Analytics, modals, markdown, currency, loaders, toasts
+- **13 Custom Hooks** - Theme, mobile detection, geo-IP, cart, and more
+- **15+ Utility Modules** - DateTime, geo-IP, image processing, GUID generation, encryption
+- **Libraries** - Analytics, logging, business hours, reCAPTCHA
 - **TypeScript** - Fully typed with comprehensive type definitions
 - **1400+ Taiwan Bank Codes** - Complete bank data with types
 
@@ -27,6 +27,12 @@ This package is designed to be used in a monorepo structure. Add it to your proj
     "mingster.backbone": "workspace:*"
   }
 }
+```
+
+Or install from npm:
+
+```bash
+bun add mingster.backbone
 ```
 
 ### Required Dependencies
@@ -78,6 +84,13 @@ bun add @dnd-kit/core@^6.3.1 @dnd-kit/sortable@^10.0.0
 bun add @dnd-kit/modifiers@^9.0.0 @dnd-kit/utilities@^3.2.2
 ```
 
+#### Markdown Support
+
+```bash
+bun add react-markdown@^10.1.0 remark-gfm@^4.0.1
+bun add rehype-highlight@^7.0.2 @uiw/react-md-editor@^4.0.8
+```
+
 #### Internationalization
 
 ```bash
@@ -123,11 +136,52 @@ Configure TypeScript path mapping in your `tsconfig.json`:
 
 ## 🚀 Features
 
-### 1. DataTable Components
+### 1. Analytics Components
+
+Google Analytics integration components for tracking user interactions.
+
+#### Components
+
+- **`PageViewTracker`** - Automatic page view tracking
+- **`TrackedButton`** - Button with click tracking
+- **`TrackedForm`** - Form with submission tracking
+- **`GATest`** - Google Tag Manager test component
+- **`AnalyticsExample`** - Complete analytics usage examples
+- **`RokuAnalyticsDashboard`** - Analytics dashboard component
+
+#### Usage
+
+.env
+
+``` ts
+# google analytics
+NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID=
+NEXT_PUBLIC_GA_MEASUREMENT_ID=
+GTM_API_SECRET=
+```
+
+```tsx
+import { PageViewTracker, TrackedButton, analytics } from "mingster.backbone";
+
+// In your layout
+<PageViewTracker />
+
+// Track button clicks
+<TrackedButton eventName="cta_click" eventParams={{ section: "hero" }}>
+  Get Started
+</TrackedButton>
+
+// Manual tracking
+analytics.trackCustomEvent("purchase_completed", { orderId: "123" });
+```
+
+---
+
+### 2. DataTable Components
 
 Advanced data table components built on `@tanstack/react-table` with sorting, filtering, pagination, and drag-and-drop support.
 
-#### Components
+#### DataTable Components
 
 - **`DataTable`** - Main datatable with sorting, filtering, and pagination
 - **`DataTableCheckbox`** - Datatable with row selection via checkboxes
@@ -136,10 +190,18 @@ Advanced data table components built on `@tanstack/react-table` with sorting, fi
 - **`DataTableViewOptions`** - Dropdown for column visibility
 - **`DataTablePagination`** - Pagination controls
 
-### 1a. Utility Components
+---
+
+### 3. Utility Components
 
 Reusable utility components for common UI patterns.
 
+- **`CollapseMenuButton`** - Collapsible menu button with animation
+- **`Currency`** - Currency display component
+- **`DisplayMarkDown`** - Markdown renderer with syntax highlighting
+- **`MarkDownEditor`** - Markdown WYSIWYG editor
+- **`HeadingWithBadge`** - Heading component with optional badge
+- **`IOSVersionCheck`** - iOS version compatibility check
 - **`Loader`** - Loading spinner component (uses `react-spinners`)
 - **`NotMountSkeleton`** - Skeleton loading state for unmounted components  
 - **`Scheduled`** - Conditionally render children after a specific timestamp
@@ -149,19 +211,49 @@ Reusable utility components for common UI patterns.
 - **`toastSuccess`, `toastError`, `toastInfo`** - Toast helper functions
 - **`TwBankCodeCombobox`** - Taiwan bank code selector combobox
 
+#### Modals
+
+- **`AlertModal`** - Generic alert/confirmation modal
+- **`ConfirmModal`** - Confirmation dialog with custom labels
+
 #### Usage
 
 ```tsx
-import { DataTable, Loader, toaster, toastSuccess } from "mingster.backbone";
+import {
+  DataTable,
+  Loader,
+  DisplayMarkDown,
+  MarkDownEditor,
+  Currency,
+  AlertModal,
+  toastSuccess,
+} from "mingster.backbone";
 
-function MyPage() {
-  return <DataTable columns={columns} data={data} searchKey="name" />;
-}
+// Display markdown
+<DisplayMarkDown content={markdownString} />
+
+// Edit markdown
+<MarkDownEditor markdown={content} onPChange={setContent} />
+
+// Show currency
+<Currency amount={1234.56} currency="USD" />
+
+// Confirmation modal
+<AlertModal
+  isOpen={isOpen}
+  onClose={() => setIsOpen(false)}
+  onConfirm={handleDelete}
+  loading={isDeleting}
+  title="Delete Item?"
+  description="This action cannot be undone."
+  cancelLabel="Cancel"
+  confirmLabel="Delete"
+/>
 ```
 
 ---
 
-### 2. UI Components (shadcn/ui)
+### 4. UI Components (shadcn/ui)
 
 Complete set of accessible, customizable UI components based on Radix UI primitives and styled with Tailwind CSS.
 
@@ -238,7 +330,7 @@ function MyComponent() {
 
 ---
 
-### 3. Hooks
+### 5. Hooks
 
 Custom React hooks for common functionality.
 
@@ -246,10 +338,12 @@ Custom React hooks for common functionality.
 
 - **`useCaptcha`** - Google reCAPTCHA integration
 - **`useCart`** - Shopping cart state management
-- **`useGeoIp`** - Geolocation based on IP
-- **`useHydrated`** - Client-side hydration detection
+- **`useGeoIP`** - Geolocation based on IP address
+- **`useGeoIPManual`** - Manual geo-IP fetching
+- **`useGeoIPWithIP`** - Geo-IP with specific IP
+- **`useIsHydrated`** - Client-side hydration detection
 - **`useLang`** - Current language state
-- **`useMobile`** - Mobile device detection
+- **`useIsMobile`** - Mobile device detection
 - **`useOrigin`** - Get current origin URL
 - **`useStore`** - Zustand store integration
 - **`useTheme`** - Theme switching (light/dark)
@@ -259,15 +353,19 @@ Custom React hooks for common functionality.
 #### Example: Using Hooks
 
 ```tsx
-import { useTheme, useMobile } from "mingster.backbone";
+import { useTheme, useMobile, useGeoIP } from "mingster.backbone";
 
 function MyComponent() {
   const { theme, setTheme } = useTheme();
   const isMobile = useMobile();
+  const { data: geoData, isLoading } = useGeoIP();
+
+  if (isLoading) return <div>Loading location...</div>;
 
   return (
     <div>
       {isMobile ? "Mobile View" : "Desktop View"}
+      <p>You're in: {geoData?.city}, {geoData?.country}</p>
       <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
         Toggle Theme
       </button>
@@ -278,7 +376,7 @@ function MyComponent() {
 
 ---
 
-### 4. Utilities
+### 6. Utilities
 
 Comprehensive utility functions for common tasks.
 
@@ -293,18 +391,31 @@ Comprehensive utility functions for common tasks.
 - `formatDateTime`, `formatDateTimeFull` - Date formatting
 - `getNowTimeInTz`, `getDateInTz` - Timezone conversions
 - `getUtcNow` - UTC timestamp
+- `getUserCurrentTimeFromUtc` - Get user's current time from UTC
+- `getOffsetHours`, `getTimezoneOffset` - Timezone offset calculations
 - `getNumOfDaysInTheMonth` - Days in month calculation
-
-#### Edge Utilities (`edge-utils`)
-
-- Edge runtime utilities for Next.js
-- Request/response helpers
+- `getFirstDayOfWeek`, `addDays`, `addHours` - Date manipulation
+- `calculateTrialEndUnixTimestamp` - Trial period calculations
+- `toDateTime` - Unix timestamp to Date conversion
 
 #### Geo IP (`geo-ip`)
 
-- IP geolocation lookup
-- Country/city detection
-- MaxMind GeoIP2 integration
+- `getGeoLocation(ip?)` - IP geolocation lookup
+- `getGeoLocationFromRequest(headers)` - Get geo from request
+- `getClientIP(headers)` - Extract client IP from headers
+- `getClientIPForServerAction()` - Server-side IP detection
+- `isGeoError(result)` - Type guard for error results
+- `getCountryCode`, `getTimezone`, `getCoordinates` - Data extractors
+- `getFormattedLocation` - Format location string
+- `isValidIP`, `isPrivateIP`, `isLocalhost` - IP validators
+- `isUserInCountry`, `isUserInContinent` - Location checks
+- `getDistance` - Calculate distance between coordinates
+- `clearGeoCache`, `getGeoCacheStats` - Cache management
+
+#### Edge Utilities (`edge-utils`)
+
+- `transformBigIntToNumbers` - Convert BigInt to Number
+- `transformDecimalsToNumbers` - Convert Decimal.js to Number
 
 #### GUID Utilities (`guid-utils`)
 
@@ -313,9 +424,14 @@ Comprehensive utility functions for common tasks.
 
 #### Image Utilities (`image-utils`)
 
+> **⚠️ Server-Side Only** - Uses `node:crypto`. Import directly:
+> ```ts
+> import { uploadToCloudinary, resizeAndCropImage } from "mingster.backbone/utils/image-utils"
+> ```
+
 - Image resizing and optimization
+- Cloudinary integration
 - Base64 encoding/decoding
-- Format conversion
 
 #### Server Utilities (`server-utils`)
 
@@ -323,28 +439,36 @@ Comprehensive utility functions for common tasks.
 - Environment checks
 - Configuration helpers
 
-#### General Utilities (`utils`)
-
-- `transformDecimalsToNumbers` - Convert Decimal.js to numbers
-- `transformBigIntToNumbers` - Convert BigInt to numbers
-- `getRandomNum` - Generate random numbers
-- `GetSubscriptionLength` - Calculate subscription durations
-- `highlight_css` - CSS highlighting utility
-
 #### Example: Utility Functions
 
 ```tsx
-import { formatDateTime, generateGuid, cn } from "mingster.backbone";
+import {
+  formatDateTime,
+  getGeoLocation,
+  transformBigIntToNumbers,
+  cn,
+} from "mingster.backbone";
 
+// Date formatting
 const now = new Date();
 const formatted = formatDateTime(now); // "2025-01-15 14:30"
-const id = generateGuid();
+
+// Geo-IP lookup
+const location = await getGeoLocation("8.8.8.8");
+if (!isGeoError(location)) {
+  console.log(location.city, location.country);
+}
+
+// BigInt conversion
+const data = transformBigIntToNumbers(bigIntData);
+
+// Class names
 const classes = cn("text-lg", "font-bold", conditional && "text-red-500");
 ```
 
 ---
 
-### 5. Libraries
+### 7. Libraries
 
 Additional functionality and integrations.
 
@@ -352,40 +476,55 @@ Additional functionality and integrations.
 
 - Google Analytics integration
 - Event tracking helpers
+- `trackCustomEvent`, `trackVideoPlay`, `trackError`, etc.
 
 #### Business Hours (`businessHours`)
 
 - Business hours management
 - Timezone-aware scheduling
+- Open/closed status checking
 
 #### Logging
 
-- **`logger`** - Server-side logging (Pino)
-- **`clientLogger`** - Client-side logging
-
-#### Crypto Utilities (`crypto-util`)
-
-- Encryption/decryption helpers
-- Hashing utilities
+- **`clientLogger`** - Client-side logging (browser-safe)
 
 #### Motion (`motion`)
 
 - Framer Motion utilities and presets
+- Animation helpers
 
 #### reCAPTCHA (`recaptcha-verify`)
 
+.env
+
+```ts 
+NEXT_PUBLIC_RECAPTCHA=
+GOOGLE_CLOUD_PROJECT_ID=
+RECAPTCHA_SECRET_KEY=
+
+//optional
+GOOGLE_APPLICATION_CREDENTIALS=
+```
+
+> **⚠️ Server-Side Only** - Import directly:
+> ```ts
+> import { verifyRecaptcha } from "mingster.backbone/lib/recaptcha-verify"
+> ```
+
 - Server-side reCAPTCHA verification
-- `verifyRecaptcha` function
+- Google Cloud reCAPTCHA Enterprise integration
 
 #### Taiwan Zip Code (`useTwZipCode2`)
 
 - Taiwan city/district/zip code data
 - Address validation
+- `useTwZipCode2` hook
 
 #### Scroll Direction (`use-scroll-direction`)
 
 - Detect scroll direction (up/down)
 - Threshold-based detection
+- `useScrollDirection` hook
 
 #### Class Names (`utils`)
 
@@ -394,18 +533,51 @@ Additional functionality and integrations.
 #### Example: Using Libraries
 
 ```tsx
-import { logger, cn, verifyRecaptcha } from "mingster.backbone";
+import { clientLogger, cn, analytics } from "mingster.backbone";
 
-// Server-side logging
-logger.info("User logged in", { userId: "123" });
+// Client-side logging (browser-safe)
+clientLogger.info("User clicked button", { userId: "123" });
 
-// Verify reCAPTCHA
-const isValid = await verifyRecaptcha(token);
+// Track analytics
+analytics.trackCustomEvent("button_click", { page: "home" });
+
+// Server-side logging (in server component/action)
+// import logger from "mingster.backbone/lib/logger";
+// logger.info("Server action executed", { userId: "123" });
 ```
 
 ---
 
-### 6. Internationalization (i18n)
+### 8. Server-Side Code
+
+Some utilities require Node.js APIs and are **NOT exported** in the main package entry point to prevent client-side bundling errors.
+
+#### Server-Only Imports
+
+```typescript
+// ✅ Server Components, API Routes, Server Actions
+import logger from "mingster.backbone/lib/logger"
+import { verifyRecaptcha } from "mingster.backbone/lib/recaptcha-verify"
+import { uploadToCloudinary } from "mingster.backbone/utils/image-utils"
+
+// ❌ DO NOT import in client components
+// import logger from "mingster.backbone" // This won't work
+```
+
+#### Why?
+
+- **`logger`** - Uses `pino` with Node.js streams
+- **`verifyRecaptcha`** - Uses `@google-cloud/recaptcha-enterprise` with gRPC
+- **`image-utils`** - Uses `node:crypto` for Cloudinary signatures
+
+#### Client-Side Alternatives
+
+- Use **`clientLogger`** for browser logging
+- Use **`analytics`** for client-side tracking
+
+---
+
+### 9. Internationalization (i18n)
 
 > **⚠️ Note**: i18n infrastructure is **NOT exported** in the built package due to project-specific locale file dependencies. The `src/i18n/` folder is included for reference, but you'll need to copy and configure it manually in your project with your own locale JSON files.
 
@@ -426,7 +598,7 @@ See [`src/i18n/locales/README.md`](./src/i18n/locales/README.md) for detailed se
 
 ---
 
-### 7. Providers
+### 10. Providers
 
 React context providers for global state.
 
@@ -454,7 +626,7 @@ function App({ children }) {
 
 ---
 
-### 8. Types
+### 11. Types
 
 TypeScript type definitions and data.
 
@@ -492,43 +664,50 @@ mingster.backbone/
 ├── tsup.config.ts            # Build configuration
 ├── README.md                 # This file
 ├── BUILD.md                  # Build system documentation
-├── doc/
-│   ├── CHANGELOG.md          # Version history & features
-│   ├── COMPONENT_MIGRATION.md # Migration guide for new components
-│   ├── EXPORT_SUMMARY.md     # Complete export reference
-│   └── PUBLISHING_CHECKLIST.md # Publishing workflow
 ├── dist/                     # Built output (generated)
-│   ├── index.js              # ESM bundle
-│   ├── index.cjs             # CommonJS bundle
-│   └── index.d.ts            # Type definitions
+│   ├── index.js              # ESM bundle (311 KB)
+│   ├── index.cjs             # CommonJS bundle (332 KB)
+│   └── index.d.ts            # Type definitions (65 KB)
 └── src/
     ├── index.ts              # Main entry point with all exports
     ├── components/           # React components
+    │   ├── analytics/            # Analytics components (6)
+    │   ├── modals/               # Modal components (2)
     │   ├── cliploader.tsx        # Loader component
-    │   ├── dataTable*.tsx        # DataTable components
+    │   ├── collapse-menu-button.tsx
+    │   ├── currency.tsx
+    │   ├── dataTable*.tsx        # DataTable components (6)
+    │   ├── datatable-draggable.tsx
+    │   ├── display-mark-down.tsx
+    │   ├── editor-component.tsx  # Markdown editor
+    │   ├── heading.tsx
+    │   ├── ios-version-check.tsx
     │   ├── not-mount-skeleton.tsx
     │   ├── scheduled.tsx
     │   ├── sidebar-toggle.tsx
     │   ├── theme-toggler.tsx
     │   ├── toaster.tsx
     │   ├── tw-bankcode-combobox.tsx
-    │   └── ui/                   # shadcn/ui components (100+ files)
-    ├── hooks/                # Custom React hooks (11 hooks)
-    ├── utils/                # Utility functions (10 modules)
+    │   └── ui/                   # shadcn/ui components (100+)
+    ├── hooks/                # Custom React hooks (13)
+    │   ├── use-geo-ip.tsx        # Geo-IP hooks
+    │   └── ...
+    ├── utils/                # Utility functions (15+)
+    │   ├── datetime-utils.ts     # Date/time utilities
+    │   ├── geo-ip.ts             # Geo-IP utilities
+    │   ├── edge-utils.ts         # BigInt/Decimal transforms
+    │   └── ...
     ├── lib/                  # Additional libraries
     │   ├── analytics.ts          # Google Analytics
     │   ├── businessHours/        # Business hours logic
     │   ├── client-logger.ts      # Client logging
-    │   ├── logger.ts             # Server logging (Pino)
+    │   ├── logger.ts             # Server logging (NOT exported)
+    │   ├── recaptcha-verify.ts   # reCAPTCHA (NOT exported)
     │   ├── useTwZipCode2/        # Taiwan zip code data
     │   └── ...
     ├── i18n/                 # i18n config (not exported, for reference)
-    │   ├── client.ts
-    │   ├── config.ts
-    │   ├── settings.ts
-    │   └── locales/              # Placeholder locale files
     ├── providers/            # React context providers
-    │   └── theme-provider.tsx    # Theme provider (exported)
+    │   └── theme-provider.tsx    # Theme provider
     └── types/                # TypeScript types
         └── bank3.ts              # Taiwan bank codes
 ```
@@ -548,7 +727,8 @@ This package declares all its dependencies as **peer dependencies**, meaning you
   "next": "^15.5.4",
   "@tanstack/react-table": "^8.21.3",
   "@radix-ui/react-*": "^1.x || ^2.x",
-  "tailwindcss": "^4.1.14"
+  "tailwindcss": "^4.1.14",
+  "lucide-react": "^0.544.0"
 }
 ```
 
@@ -577,7 +757,7 @@ bun run build         # Build with tsup (ESM + CJS + types)
 bun run dev           # Watch mode for development
 bun run clean         # Clean build artifacts
 
-# Publishing (see PUBLISHING_CHECKLIST.md)
+# Publishing (see BUILD.md)
 npm publish --access public
 ```
 
@@ -597,29 +777,53 @@ For npm publishing, the package uses:
 
 ```tsx
 import {
+  // Analytics
+  PageViewTracker,
+  TrackedButton,
+  analytics,
+  
+  // Data Tables
   DataTable,
+  
+  // UI Components
   Button,
   Dialog,
   DialogTrigger,
   DialogContent,
   DialogTitle,
+  
+  // Utility Components
   Loader,
-  toastSuccess,
-  toastError,
+  DisplayMarkDown,
+  Currency,
+  AlertModal,
+  
+  // Hooks
   useTheme,
   useMobile,
+  useGeoIP,
+  
+  // Utilities
   formatDateTime,
+  getGeoLocation,
+  transformBigIntToNumbers,
   cn,
+  
+  // Toast
+  toastSuccess,
+  toastError,
 } from "mingster.backbone";
 
 function AdminDashboard({ data, isLoading }) {
   const { theme } = useTheme();
   const isMobile = useMobile();
+  const { data: geoData } = useGeoIP();
 
   const handleAddItem = async (item) => {
     try {
       await saveItem(item);
       toastSuccess({ description: "Item added successfully!" });
+      analytics.trackCustomEvent("item_added", { itemId: item.id });
     } catch (error) {
       toastError({ description: "Failed to add item" });
     }
@@ -629,10 +833,13 @@ function AdminDashboard({ data, isLoading }) {
 
   return (
     <div className={cn("p-4", isMobile && "p-2")}>
+      <PageViewTracker />
+      
       <h1>Admin Dashboard</h1>
       <p className="text-muted-foreground">
         Last updated: {formatDateTime(new Date())}
       </p>
+      {geoData && <p>Location: {geoData.city}, {geoData.country}</p>}
       
       <DataTable
         columns={columns}
@@ -642,7 +849,9 @@ function AdminDashboard({ data, isLoading }) {
       
       <Dialog>
         <DialogTrigger asChild>
-          <Button>Add Item</Button>
+          <TrackedButton eventName="add_item_click">
+            Add Item
+          </TrackedButton>
         </DialogTrigger>
         <DialogContent>
           <DialogTitle>Add New Item</DialogTitle>
@@ -663,5 +872,9 @@ MIT
 ## 👤 Author
 
 mingster - [https://mingster.com](https://mingster.com)
+
+## 📦 Repository
+
+[https://github.com/mingster/mingster.backbone](https://github.com/mingster/mingster.backbone)
 
 ---

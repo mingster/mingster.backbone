@@ -1,5 +1,4 @@
 import { format } from "date-fns"
-import logger from "../lib/logger"
 
 // https://nextjs.org/learn-pages-router/basics/dynamic-routes/polishing-post-page
 // https://github.com/you-dont-need/You-Dont-Need-Momentjs?tab=readme-ov-file#string--time-format
@@ -69,7 +68,7 @@ export function getOffsetHours(timezone: string): number {
 
         return offsetHours
     } catch (error) {
-        logger.warn(error, {
+        console.warn(error, {
             message: "Invalid timezone",
             metadata: { timezone },
             service: "getOffsetHours",
@@ -91,7 +90,7 @@ export function getTimezoneOffset(timezone: string): number {
         const targetTime = new Date(utc + 0 * 60000) // Adjust this based on your timezone logic
         return targetTime.getTimezoneOffset()
     } catch (error) {
-        logger.warn("Failed to calculate timezone offset", {
+        console.warn("Failed to calculate timezone offset", {
             message: "Failed to calculate timezone offset",
             metadata: {
                 timezone,
@@ -157,7 +156,7 @@ export function getUserCurrentTimeFromUtc(timezone: string): Date {
 
         return result
     } catch (error) {
-        logger.warn("Failed to get user current time from UTC", {
+        console.warn("Failed to get user current time from UTC", {
             message: "Failed to get user current time from UTC",
             metadata: {
                 timezone,

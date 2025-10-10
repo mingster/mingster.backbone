@@ -3,21 +3,38 @@
 // ============================================================================
 
 // ============================================================================
+// Analytics Components
+// ============================================================================
+export { AnalyticsExample } from "./components/analytics/example-usage"
+export { GATest } from "./components/analytics/gtm-test"
+export { PageViewTracker } from "./components/analytics/page-view-tracker"
+export { RokuAnalyticsDashboard } from "./components/analytics/roku-analytics-dashboard"
+export { TrackedButton } from "./components/analytics/tracked-button"
+export { TrackedForm } from "./components/analytics/tracked-form"
+export { Loader } from "./components/cliploader"
+
+// ============================================================================
 // Utility Components
 // ============================================================================
-export { Loader } from "./components/cliploader"
+export { CollapseMenuButton } from "./components/collapse-menu-button"
+export { default as Currency } from "./components/currency"
 export { DataTable } from "./components/dataTable"
 export { DataTableCheckbox } from "./components/dataTable-checkbox"
 export { DataTableColumnHeader } from "./components/dataTable-column-header"
 export { DataTablePagination } from "./components/dataTable-pagination"
 export { DataTableViewOptions } from "./components/dataTable-view-options"
-
 export type { DataTableDraggableProps } from "./components/datatable-draggable"
 export {
     DataTableDraggable,
     DraggableRow,
     DragHandle
 } from "./components/datatable-draggable"
+export { default as DisplayMarkDown } from "./components/display-mark-down"
+export { default as MarkDownEditor } from "./components/editor-component"
+export { Heading as HeadingWithBadge } from "./components/heading"
+export { IOSVersionCheck } from "./components/ios-version-check"
+export { AlertModal } from "./components/modals/alert-modal"
+export { ConfirmModal } from "./components/modals/confirm-modal"
 export { NotMountSkeleton } from "./components/not-mount-skeleton"
 export { default as Scheduled } from "./components/scheduled"
 export { SidebarToggle } from "./components/sidebar-toggle"
@@ -69,6 +86,7 @@ export { Button, buttonVariants } from "./components/ui/button"
 export { Calendar } from "./components/ui/calendar"
 export {
     Card,
+    CardAction,
     CardContent,
     CardDescription,
     CardFooter,
@@ -83,6 +101,7 @@ export {
     CarouselPrevious
 } from "./components/ui/carousel"
 export {
+    type ChartConfig,
     ChartContainer,
     ChartLegend,
     ChartLegendContent,
@@ -305,10 +324,16 @@ export * from "./utils/chinese-utils"
 export * from "./utils/datetime-utils"
 export * from "./utils/geo-ip"
 export * from "./utils/guid-utils"
-export * from "./utils/image-utils"
+// NOTE: image-utils is CLIENT-SIDE but uses node:crypto for Cloudinary signatures (server-side only)
+// Import directly if needed: import { resizeAndCropinary, uploadToCloudinary } from "mingster.backbone/utils/image-utils"
+// export * from "./utils/image-utils"
 export * from "./utils/logger"
 export * from "./utils/server-utils"
-// edge-utils exports duplicate transformDecimalsToNumbers, so import separately if needed
+// Export edge-utils for BigInt/Decimal transformations
+export {
+    transformBigIntToNumbers,
+    transformDecimalsToNumbers
+} from "./utils/edge-utils"
 
 // ============================================================================
 // Lib
@@ -316,9 +341,10 @@ export * from "./utils/server-utils"
 export * from "./lib/analytics"
 export * from "./lib/businessHours"
 export { clientLogger } from "./lib/client-logger"
-export { default as logger } from "./lib/logger"
-export * from "./lib/motion"
-export { verifyRecaptcha } from "./lib/recaptcha-verify"
+// NOTE: logger has been moved to project-specific lib (server-side only, uses pino)
+// NOTE: verifyRecaptcha is SERVER-SIDE ONLY (uses @google-cloud/recaptcha-enterprise with gRPC)
+// Import directly if needed: import { verifyRecaptcha } from "mingster.backbone/lib/recaptcha-verify"
+// export { verifyRecaptcha } from "./lib/recaptcha-verify"
 export { useScrollDirection } from "./lib/use-scroll-direction"
 export * from "./lib/useTwZipCode2"
 export { cn } from "./lib/utils"

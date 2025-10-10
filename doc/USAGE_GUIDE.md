@@ -484,7 +484,7 @@ import { ThemeProvider } from "mingster.backbone";
 ### Server-Side Logging
 
 ```tsx
-import { logger } from "mingster.backbone";
+import logger from "@/lib/logger";
 
 // In Server Actions or API Routes
 export async function createUser(data: UserData) {
