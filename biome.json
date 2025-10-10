@@ -54,15 +54,7 @@
                 }
             },
             "nursery": {
-                "useSortedClasses": {
-                    "fix": "safe",
-                    "level": "info",
-                    "options": {
-                        "functions": [
-                            "cn"
-                        ]
-                    }
-                }
+                "useSortedClasses": "off"
             }
         }
     },

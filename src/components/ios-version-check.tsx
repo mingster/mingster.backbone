@@ -23,7 +23,7 @@ export function IOSVersionCheck({ children }: { children: React.ReactNode }) {
         return (
             <div className="flex min-h-screen items-center justify-center bg-background p-4">
                 <div className="text-center">
-                    <h1 className="mb-4 font-semibold text-foreground text-xl">
+                    <h1 className="mb-4 text-xl font-semibold text-foreground">
                         Browser Not Supported
                     </h1>
                     <p className="text-muted-foreground">

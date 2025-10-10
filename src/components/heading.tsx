@@ -1,4 +1,4 @@
-import { cn } from "../lib/utils"
+import clsx from "clsx"
 
 interface HeadingProps {
     title: string
@@ -19,18 +19,18 @@ export const Heading: React.FC<HeadingProps> = ({
     // lg:font-extrabold
 
     return (
-        <div className={cn("", className)}>
+        <div className={clsx("", className)}>
             <strong className="relative inline-flex items-center rounded">
                 {badge !== null && badge !== undefined && badge !== 0 && (
-                    <span className="-top-1 -right-4 absolute flex size-5 items-center justify-center rounded-full bg-green-800 pb-1 text-slate-100 text-xs">
+                    <span className="absolute -top-1 -right-4 size-5 rounded-full bg-green-800 text-slate-100 flex justify-center items-center text-xs pb-1">
                         <span>{badge}</span>
                     </span>
                 )}
-                <h1 className="text-slate-900 text-xl uppercase tracking-tight dark:text-gray-200">
+                <h1 className="text-xl uppercase tracking-tight text-slate-900 dark:text-gray-200">
                     {title}
                 </h1>
             </strong>
-            <div className="p-0 text-muted-foreground text-xs">
+            <div className="text-muted-foreground text-xs p-0">
                 {description}
             </div>
         </div>

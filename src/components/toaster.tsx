@@ -1,3 +1,5 @@
+"use client"
+
 import { IconAlertTriangle } from "@tabler/icons-react"
 import { Toaster as SonnerToaster, toast } from "sonner"
 

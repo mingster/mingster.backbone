@@ -33,7 +33,7 @@ export const TwBankCodeCombobox = ({
     const [selected, setSelected] = useState<string | undefined>(defaultValue)
     const [open, setOpen] = useState(false)
 
-    console.log(`selected: ${selected}`)
+    //console.log(`selected: ${selected}`)
 
     return (
         <Popover open={open} onOpenChange={setOpen}>

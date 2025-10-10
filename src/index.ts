@@ -302,7 +302,9 @@ export {
 // ============================================================================
 export { useCaptcha } from "./hooks/use-captcha"
 export { useCart } from "./hooks/use-cart"
-export { useGeoIP, useGeoIPManual, useGeoIPWithIP } from "./hooks/use-geo-ip"
+// NOTE: useGeoIP hooks are not exported - they have external dependencies on geo-ip utils
+// Import directly if needed: import { useGeoIP } from "mingster.backbone/hooks/use-geo-ip"
+// export { useGeoIP, useGeoIPManual, useGeoIPWithIP } from "./hooks/use-geo-ip"
 export { useIsHydrated } from "./hooks/use-hydrated"
 export { useLang } from "./hooks/use-lang"
 export { useIsMobile } from "./hooks/use-mobile"
