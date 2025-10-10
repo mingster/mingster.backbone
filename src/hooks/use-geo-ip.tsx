@@ -11,7 +11,7 @@ import {
     isGeoError,
     isUserInContinent,
     isUserInCountry
-} from "../utils/geo-ip"
+} from "../../../../mingster.com/web/src/utils/geo-ip"
 
 interface UseGeoIPOptions {
     /** Auto-fetch geo location on mount */

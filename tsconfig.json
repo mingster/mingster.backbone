@@ -22,5 +22,5 @@
   "include": [
       "src",
       "tsup.config.ts"
-  ]
+, "../../mingster.com/web/src/utils/server-utils.ts", "../../mingster.com/web/src/utils/geo-ip.ts"  ]
 }
