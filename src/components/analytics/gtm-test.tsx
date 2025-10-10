@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 
 declare global {
     interface Window {
+        // biome-ignore lint/suspicious/noExplicitAny: Google Analytics gtag accepts variable arguments
         gtag: (...args: any[]) => void
     }
 }

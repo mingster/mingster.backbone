@@ -9,9 +9,7 @@ export default function useLocalStorage(
 ): [string, (value: string) => void] {
     const [storedValue, setStoredValue] = React.useState(() => {
         try {
-            const item =
-                typeof window !== "undefined" &&
-                window.localStorage.getItem(key)
+            const item = window?.localStorage.getItem(key)
 
             return item ? item : initialValue
         } catch (_error) {

@@ -31,6 +31,7 @@ const sanitizeActionName = (action: string): string => {
 export function useCaptcha() {
     const { captcha } = useContext(AuthUIContext)
 
+    // biome-ignore lint/suspicious/noExplicitAny: reCAPTCHA ref type is not fully typed
     const captchaRef = useRef<any>(null)
     const { executeRecaptcha } = useGoogleReCaptcha()
 

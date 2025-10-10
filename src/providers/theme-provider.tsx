@@ -32,8 +32,10 @@ interface ScriptProps
         React.ScriptHTMLAttributes<HTMLScriptElement>,
         HTMLScriptElement
     > {
+    // biome-ignore lint/suspicious/noExplicitAny: Data attributes can be any value
     [dataAttribute: DataAttribute]: any
 }
+// biome-ignore lint/correctness/noUnusedVariables: Interface is part of theme provider API
 interface UseThemeProps {
     /** List of all available theme names */
     themes: string[]

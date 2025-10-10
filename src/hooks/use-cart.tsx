@@ -17,6 +17,7 @@ export interface Item {
     quantity: number
     itemTotal?: number //    itemTotal: item.price * (item.quantity ?? 0),
     itemOptions?: ItemOption[]
+    // biome-ignore lint/suspicious/noExplicitAny: Cart items can have additional custom properties
     [key: string]: any
 }
 
@@ -30,6 +31,7 @@ export interface InitialState {
     metadata?: Metadata
 }
 export interface Metadata {
+    // biome-ignore lint/suspicious/noExplicitAny: Metadata can contain any JSON-serializable value
     [key: string]: any
 }
 
@@ -61,6 +63,7 @@ export type Actions =
     | { type: "SET_CART_META"; payload: Metadata }
     | { type: "UPDATE_CART_META"; payload: Metadata }
 
+// biome-ignore lint/suspicious/noExplicitAny: Initial state needs to match InitialState interface
 export const initialState: any = {
     items: [],
     isEmpty: true,

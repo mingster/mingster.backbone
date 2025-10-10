@@ -1,16 +1,16 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useCallback, useEffect, useState } from "react"
 import {
-    getGeoLocation,
     type GeoLocation,
-    isGeoError,
-    getCountryCode,
-    getTimezone,
     getCoordinates,
+    getCountryCode,
     getFormattedLocation,
-    isUserInCountry,
-    isUserInContinent
+    getGeoLocation,
+    getTimezone,
+    isGeoError,
+    isUserInContinent,
+    isUserInCountry
 } from "../utils/geo-ip"
 
 interface UseGeoIPOptions {
@@ -73,7 +73,7 @@ interface UseGeoIPReturn {
  * ```
  */
 export function useGeoIP(options: UseGeoIPOptions = {}): UseGeoIPReturn {
-    const { autoFetch = true, ip, cacheDuration } = options
+    const { autoFetch = true, ip } = options
 
     const [data, setData] = useState<GeoLocation | null>(null)
     const [error, setError] = useState<string | null>(null)

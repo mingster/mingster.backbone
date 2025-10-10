@@ -20,6 +20,7 @@ interface LogEntry {
     duration?: number
     errorCode?: string
     stackTrace?: string
+    // biome-ignore lint/suspicious/noExplicitAny: Metadata can contain any JSON-serializable value
     metadata?: Record<string, any>
     tags?: string[]
     source?: string
@@ -208,6 +209,7 @@ class ClientLogger {
     }
 
     // Log errors with context
+    // biome-ignore lint/suspicious/noExplicitAny: Context can contain any JSON-serializable value
     logError(error: Error, context?: Record<string, any>): void {
         this.error(error, {
             metadata: context,

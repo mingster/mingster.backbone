@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
@@ -39,11 +39,7 @@ export function RokuAnalyticsDashboard() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
-    useEffect(() => {
-        fetchAnalyticsData()
-    }, [])
-
-    const fetchAnalyticsData = async () => {
+    const fetchAnalyticsData = useCallback(async () => {
         try {
             setLoading(true)
             setError(null)
@@ -121,7 +117,11 @@ export function RokuAnalyticsDashboard() {
         } finally {
             setLoading(false)
         }
-    }
+    }, [])
+
+    useEffect(() => {
+        fetchAnalyticsData()
+    }, [fetchAnalyticsData])
 
     const formatTimestamp = (timestamp: number) => {
         return new Date(timestamp * 1000).toLocaleString()

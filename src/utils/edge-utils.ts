@@ -1,6 +1,7 @@
 // Edge Runtime compatible utility functions
 // This file should not import any Node.js modules like 'crypto'
 
+// biome-ignore lint/suspicious/noExplicitAny: Generic transformation function needs to accept any type
 export const transformBigIntToNumbers = (obj: any): any => {
     if (obj === null || obj === undefined) return
 
@@ -20,6 +21,7 @@ export const transformBigIntToNumbers = (obj: any): any => {
 }
 
 // recursive function looping deeply through an object to find Decimals
+// biome-ignore lint/suspicious/noExplicitAny: Generic transformation function needs to accept any type
 export const transformDecimalsToNumbers = (obj: any) => {
     if (!obj) {
         return

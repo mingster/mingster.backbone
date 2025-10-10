@@ -7,6 +7,7 @@ interface TrackedButtonProps {
     children: React.ReactNode
     onClick?: () => void
     trackingEvent?: string
+    // biome-ignore lint/suspicious/noExplicitAny: Analytics parameters can be any JSON-serializable value
     trackingParameters?: Record<string, any>
     className?: string
     variant?:
