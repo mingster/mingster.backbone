@@ -1,13 +1,13 @@
 "use client";
 
-import { cn } from "../../lib/utils";
+import { cn } from "../lib/utils";
 
 interface ContainerProps {
 	children: React.ReactNode;
 	className?: string;
 }
 
-const Container: React.FC<ContainerProps> = ({ children, className }) => {
+export const Container: React.FC<ContainerProps> = ({ children, className }) => {
 	return (
 		<div className={cn("w-full min-h-screen pt-2 px-1", className)}>
 			<div className="rounded min-h-[98%] xl:container xl:mx-auto">
@@ -17,5 +17,3 @@ const Container: React.FC<ContainerProps> = ({ children, className }) => {
 		</div>
 	);
 };
-
-export default Container;

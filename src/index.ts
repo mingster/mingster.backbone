@@ -15,7 +15,7 @@ export { TrackedForm } from "./components/analytics/tracked-form"
 // Utility Components
 // ============================================================================
 export { CollapseMenuButton } from "./components/collapse-menu-button"
-export { default as Currency } from "./components/currency"
+export { Currency } from "./components/currency"
 export { DataTable } from "./components/dataTable"
 export { DataTableCheckbox } from "./components/dataTable-checkbox"
 export { DataTableColumnHeader } from "./components/dataTable-column-header"
@@ -27,8 +27,8 @@ export {
     DraggableRow,
     DragHandle
 } from "./components/datatable-draggable"
-export { default as DisplayMarkDown } from "./components/display-mark-down"
-export { default as MarkDownEditor } from "./components/editor-component"
+export { DisplayMarkDown } from "./components/display-mark-down"
+export { MarkDownEditor } from "./components/editor-component"
 export { Heading as HeadingWithBadge } from "./components/heading"
 export { IOSVersionCheck } from "./components/ios-version-check"
 // ============================================================================
@@ -38,9 +38,9 @@ export { Loader } from "./components/loader"
 export { AlertModal } from "./components/modals/alert-modal"
 export { ConfirmModal } from "./components/modals/confirm-modal"
 export { NotMountSkeleton } from "./components/not-mount-skeleton"
-export { default as Scheduled } from "./components/scheduled"
+export { Scheduled } from "./components/scheduled"
 export { SidebarToggle } from "./components/sidebar-toggle"
-export { default as ThemeToggler } from "./components/theme-toggler"
+export { ThemeToggler } from "./components/theme-toggler"
 export {
     toastError,
     toaster,
@@ -123,7 +123,7 @@ export {
     CommandSeparator,
     CommandShortcut
 } from "./components/ui/command"
-export { default as Container } from "./components/ui/container"
+export { Container } from "./components/container"
 export {
     Dialog,
     DialogClose,
@@ -181,7 +181,7 @@ export {
     HoverCardContent,
     HoverCardTrigger
 } from "./components/ui/hover-card"
-export { default as IconButton } from "./components/ui/icon-button"
+export { IconButton } from "./components/ui/icon-button"
 export { Input } from "./components/ui/input"
 export {
     InputOTP,

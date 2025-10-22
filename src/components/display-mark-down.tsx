@@ -8,7 +8,7 @@ import remarkRehype from "remark-rehype"
 
 // display markdown content
 //
-export default function DisplayMarkDown({ content }: { content: string }) {
+export function DisplayMarkDown({ content }: { content: string }) {
     if (!content) {
         return ""
     }

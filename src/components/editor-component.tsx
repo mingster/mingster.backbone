@@ -22,7 +22,7 @@ interface EditorProps {
  * Extend this Component further with the necessary plugins or props you need.
  * proxying the ref is necessary. Next.js dynamically imported components don't support refs.
  */
-const MarkDownEditor: FC<EditorProps> = ({ markdown, onPChange }) => {
+export const MarkDownEditor: FC<EditorProps> = ({ markdown, onPChange }) => {
     const [value, setValue] = useState(markdown)
     const { theme } = useTheme()
 
@@ -51,5 +51,3 @@ const MarkDownEditor: FC<EditorProps> = ({ markdown, onPChange }) => {
         </div>
     )
 }
-
-export default MarkDownEditor

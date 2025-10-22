@@ -17,7 +17,7 @@ interface CurrencyProps {
     value?: string | number | Decimal
 }
 
-const Currency: React.FC<CurrencyProps> = ({ value = 0 }) => {
+export const Currency: React.FC<CurrencyProps> = ({ value = 0 }) => {
     const [isMounted, setIsMounted] = useState(false)
 
     useEffect(() => {
@@ -39,5 +39,3 @@ const Currency: React.FC<CurrencyProps> = ({ value = 0 }) => {
         </div>
     )
 }
-
-export default Currency

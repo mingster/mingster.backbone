@@ -6,7 +6,7 @@ interface props {
     timestamp: number
     children: React.ReactNode
 }
-const Scheduled = ({ timestamp, children }: props) => {
+export const Scheduled = ({ timestamp, children }: props) => {
     const [isEnabled, setEnabled] = useState(false)
 
     useEffect(() => {
@@ -22,4 +22,3 @@ const Scheduled = ({ timestamp, children }: props) => {
 
     return isEnabled ? children : null
 }
-export default Scheduled

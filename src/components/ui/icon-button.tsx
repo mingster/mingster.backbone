@@ -21,7 +21,7 @@ hover:scale-110
 transition
 `;
 
-const IconButton: React.FC<IconButtonProps> = ({
+export const IconButton: React.FC<IconButtonProps> = ({
 	onClick,
 	icon,
 	className,
@@ -36,5 +36,3 @@ const IconButton: React.FC<IconButtonProps> = ({
 		</button>
 	);
 };
-
-export default IconButton;
