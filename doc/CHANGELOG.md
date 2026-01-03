@@ -154,4 +154,4 @@ None (initial release)
 - Performance optimizations
 - Additional utility functions
 
-**Note**: This is the initial release of the `mingster.backbone` package, consolidating shared components from mingster.com and riben.life projects.
+**Note**: This is the initial release of the `mingster.backbone` package, consolidating shared components from mingster.com and mingster.com projects.

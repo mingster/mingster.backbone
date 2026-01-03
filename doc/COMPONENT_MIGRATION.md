@@ -36,7 +36,7 @@ The following components have been successfully moved to `mingster.backbone`:
 
 Replace local imports with shared package imports:
 
-#### Before (riben.life/web or mingster.com/web)
+#### Before (mingster.com/web or mingster.com/web)
 
 ```tsx
 import { Loader } from "@/components/loader";
@@ -72,7 +72,7 @@ import {
 
 After updating all imports, you can safely delete the following files from your project:
 
-#### In riben.life/web/src/components/
+#### In mingster.com/web/src/components/
 
 - `loader.tsx`
 - `not-mount-skeleton.tsx`
@@ -82,7 +82,7 @@ After updating all imports, you can safely delete the following files from your 
 - `Toaster.tsx`
 - `tw-bankcode-combobox.tsx`
 
-#### In riben.life/web/src/types/
+#### In mingster.com/web/src/types/
 
 - `bank3.ts`
 
@@ -96,7 +96,7 @@ bun add react-spinners
 
 ## Files Requiring Updates
 
-### riben.life/web
+### mingster.com/web
 
 #### Loader Component (77 files)
 

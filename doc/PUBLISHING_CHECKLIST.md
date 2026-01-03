@@ -157,10 +157,10 @@ git push origin main --tags
 
 ### 5. Update Consuming Projects
 
-Update `riben.life/web` and `mingster.com/web`:
+Update `mingster.com/web` and `mingster.com/web`:
 
 ```bash
-cd /Users/mtsai/projects/riben.life/web
+cd /Users/mtsai/projects/mingster.com/web
 
 # Remove local package reference from package.json
 # Change from: "mingster.backbone": "workspace:*"

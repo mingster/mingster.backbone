@@ -1,6 +1,6 @@
 # Shared Packages Guide
 
-This guide explains the shared packages structure for the riben.life and mingster.com projects.
+This guide explains the shared packages structure for the mingster.com and mingster.com projects.
 
 ## Overview
 
@@ -34,7 +34,7 @@ See [mingster.backbone/MIGRATION.md](./mingster.backbone/MIGRATION.md) for migra
 
 ## Projects Using Shared Packages
 
-1. **riben.life/web** - `/Users/mtsai/projects/riben.life/web/`
+1. **mingster.com/web** - `/Users/mtsai/projects/mingster.com/web/`
 2. **mingster.com/web** - `/Users/mtsai/projects/mingster.com/web/`
 
 ## How It Works
@@ -43,7 +43,7 @@ See [mingster.backbone/MIGRATION.md](./mingster.backbone/MIGRATION.md) for migra
 
 Each project's `tsconfig.json` includes path mappings to the shared packages:
 
-**riben.life/web/tsconfig.json:**
+**mingster.com/web/tsconfig.json:**
 
 ```json
 {

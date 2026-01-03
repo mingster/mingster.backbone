@@ -97,7 +97,7 @@ bun run typecheck
 ### 4. Test in Consuming Project
 
 ```bash
-cd ../../riben.life/web
+cd ../../mingster.com/web
 bun run dev
 ```
 

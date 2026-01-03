@@ -174,7 +174,7 @@ After successful publish:
 1. **Update consuming projects**:
 
    ```bash
-   cd riben.life/web
+   cd mingster.com/web
    bun update mingster.backbone
    ```
 

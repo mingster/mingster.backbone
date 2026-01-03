@@ -566,7 +566,7 @@ If types are not resolving:
 
 - GitHub: [https://github.com/mingster/mingster.backbone](https://github.com/mingster/mingster.backbone)
 - Documentation: See README.md
-- Examples: Check `mingster.com` and `riben.life` projects
+- Examples: Check `mingster.com` and `mingster.com` projects
 
 ---
 
